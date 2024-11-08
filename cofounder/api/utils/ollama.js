@@ -1,26 +1,33 @@
-const apiKey = process.env.OLLAMA_API_KEY;
-const apiUrl = "https://api.ollama.com/v1";
+import fs from 'fs';
+import Ollama from 'ollama';
 
-async function inference({ model, input }) {
-  const response = await fetch(`${apiUrl}/inference`, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      "model": model,
-      "input": input,
-    }),
+const ollama = new Ollama({
+  model: 'ollama',
+});
+
+async function inference(options) {
+  const response = await ollama.inference({
+    input: options.input,
   });
+  return response.data;
+}
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
+async function vectorize(options) {
+  const response = await ollama.vectorize({
+    input: options.input,
+  });
+  return response.data;
+}
 
-  return await response.json();
+async function transcribe(options) {
+  const response = await ollama.transcribe({
+    file: options.file,
+  });
+  return response.data;
 }
 
 export default {
   inference,
+  vectorize,
+  transcribe,
 };

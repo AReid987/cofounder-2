@@ -1,26 +1,33 @@
-const apiKey = process.env.MLXLM_API_KEY;
-const apiUrl = "https://api mlxlm.com/v1";
+import fs from 'fs';
+import MLXLM from 'mlxlm';
 
-async function inference({ model, input }) {
-  const response = await fetch(`${apiUrl}/inference`, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      "model": model,
-      "input": input,
-    }),
+const mlxlm = new MLXLM({
+  model: 'mlxlm',
+});
+
+async function inference(options) {
+  const response = await mlxlm.inference({
+    input: options.input,
   });
+  return response.data;
+}
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
+async function vectorize(options) {
+  const response = await mlxlm.vectorize({
+    input: options.input,
+  });
+  return response.data;
+}
 
-  return await response.json();
+async function transcribe(options) {
+  const response = await mlxlm.transcribe({
+    file: options.file,
+  });
+  return response.data;
 }
 
 export default {
   inference,
+  vectorize,
+  transcribe,
 };
