@@ -4,11 +4,10 @@ const ollamaEndpoint = "http://localhost:11434";
 
 async function inference(options) {
   try {
-    if (!options.model || !options.input) {
-      throw new Error("Model and input are required");
+    if (!options.input) {
+      throw new Error("Input is required");
     }
-    const response = await axios.post(`${ollamaEndpoint}/inference`, {
-      model: options.model,
+    const response = await axios.post(ollamaEndpoint, {
       input: options.input,
     });
     return response.data;
@@ -19,34 +18,11 @@ async function inference(options) {
 }
 
 async function vectorize(options) {
-  try {
-    if (!options.model || !options.input) {
-      throw new Error("Model and input are required");
-    }
-    const response = await axios.post(`${ollamaEndpoint}/vectorize`, {
-      model: options.model,
-      input: options.input,
-    });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  throw new Error("Vectorization is not supported by the Ollama API");
 }
 
 async function transcribe(options) {
-  try {
-    if (!options.file) {
-      throw new Error("File is required");
-    }
-    const response = await axios.post(`${ollamaEndpoint}/transcribe`, {
-      file: options.file,
-    });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  throw new Error("Transcription is not supported by the Ollama API");
 }
 
 export default {
