@@ -23,6 +23,9 @@ const providers = {
 };
 
 function getProvider(name) {
+  if (!providers[name]) {
+    throw new Error(`Unknown provider: ${name}`);
+  }
   return providers[name];
 }
 
