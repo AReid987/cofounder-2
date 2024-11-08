@@ -1,29 +1,52 @@
-import fs from 'fs';
-import Ollama from 'ollama';
+import axios from "axios";
 
-const ollama = new Ollama({
-  model: 'ollama',
-});
+const ollamaEndpoint = "http://localhost:11434";
 
 async function inference(options) {
-  const response = await ollama.inference({
-    input: options.input,
-  });
-  return response.data;
+  try {
+    if (!options.model || !options.input) {
+      throw new Error("Model and input are required");
+    }
+    const response = await axios.post(`${ollamaEndpoint}/inference`, {
+      model: options.model,
+      input: options.input,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 async function vectorize(options) {
-  const response = await ollama.vectorize({
-    input: options.input,
-  });
-  return response.data;
+  try {
+    if (!options.model || !options.input) {
+      throw new Error("Model and input are required");
+    }
+    const response = await axios.post(`${ollamaEndpoint}/vectorize`, {
+      model: options.model,
+      input: options.input,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 async function transcribe(options) {
-  const response = await ollama.transcribe({
-    file: options.file,
-  });
-  return response.data;
+  try {
+    if (!options.file) {
+      throw new Error("File is required");
+    }
+    const response = await axios.post(`${ollamaEndpoint}/transcribe`, {
+      file: options.file,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export default {
