@@ -6,6 +6,8 @@ import firebase from "@/utils/firebase.js";
 import storage from "@/utils/storage.js";
 import load from "@/utils/load.js";
 import anthropic from "@/utils/anthropic.js";
+import xai from "@/utils/xai.js";
+
 
 export default {
 	parsers,
@@ -16,4 +18,5 @@ export default {
 	firebase,
 	storage,
 	load,
+  xai,
 };
