@@ -18,14 +18,14 @@ import mistral from "@/utils/mistral.js";
 import samabanova from "@/utils/samabanova.js";
 
 export default {
-	parsers,
-	openai,
-	anthropic,
-	vectra,
-	render,
-	firebase,
-	storage,
-	load,
+  parsers,
+  openai,
+  anthropic,
+  vectra,
+  render,
+  firebase,
+  storage,
+  load,
   xai,
   cerebras,
   groq,
