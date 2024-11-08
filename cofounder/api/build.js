@@ -149,7 +149,24 @@ async function build({ system }) {
       },
     },
     // ...
+    cerebras: {
+      type: `node`,
+      meta: {
+        // ...
+      },
+      run: async ({ context = {}, data = {} }) => {
+        // ...
+      },
+    },
+    groq: {
+      type: `node`,
+      meta: {
+        // ...
+      },
+      run: async ({ context = {}, data = {} }) => {
+        // ...
+      },
+    },
+    // ...
   };
-
-  // ... (rest of the code remains the same)
 }
