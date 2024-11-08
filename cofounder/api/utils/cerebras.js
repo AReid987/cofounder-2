@@ -1,6 +1,6 @@
-import { Cerebras } from 'cerebras';
+import { CerebrasClient } from 'cerebras';
 
-const cerebras = new Cerebras({
+const cerebrasClient = new CerebrasClient({
   apiKey: process.env.CEREBRAS_API_KEY,
 });
 
@@ -9,11 +9,11 @@ async function inference(options) {
     if (!options.model || !options.input) {
       throw new Error('Model and input are required');
     }
-    const response = await cerebras.inference({
-      model: options.model,
-      input: options.input,
+    const response = await cerebrasClient.runModel({
+      model_name: options.model,
+      inputs: [options.input],
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error(error);
     throw error;
@@ -25,11 +25,11 @@ async function vectorize(options) {
     if (!options.model || !options.input) {
       throw new Error('Model and input are required');
     }
-    const response = await cerebras.vectorize({
-      model: options.model,
-      input: options.input,
+    const response = await cerebrasClient.runModel({
+      model_name: options.model,
+      inputs: [options.input],
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error(error);
     throw error;
@@ -41,10 +41,7 @@ async function transcribe(options) {
     if (!options.file) {
       throw new Error('File is required');
     }
-    const response = await cerebras.transcribe({
-      file: options.file,
-    });
-    return response.data;
+    throw new Error('Transcription is not supported by the Cerebras Cloud SDK');
   } catch (error) {
     console.error(error);
     throw error;
