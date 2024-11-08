@@ -7,7 +7,15 @@ import storage from "@/utils/storage.js";
 import load from "@/utils/load.js";
 import anthropic from "@/utils/anthropic.js";
 import xai from "@/utils/xai.js";
-
+import cerebras from "@/utils/cerebras.js";
+import groq from "@/utils/groq.js";
+import mlxlm from "@/utils/mlxlm.js";
+import ollama from "@/utils/ollama.js";
+import llamacpp from "@/utils/llamacpp.js";
+import togetherai from "@/utils/togetherai.js";
+import googlegemini from "@/utils/googlegemini.js";
+import mistral from "@/utils/mistral.js";
+import samabanova from "@/utils/samabanova.js";
 
 export default {
 	parsers,
@@ -19,4 +27,13 @@ export default {
 	storage,
 	load,
   xai,
+  cerebras,
+  groq,
+  mlxlm,
+  ollama,
+  llamacpp,
+  togetherai,
+  googlegemini,
+  mistral,
+  samabanova,
 };
