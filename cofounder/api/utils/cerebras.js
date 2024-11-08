@@ -1,37 +1,31 @@
-import Cerebras from "@cerebras/cerebras_cloud_sdk";
+import axios from "axios";
 
-const client = new Cerebras({
-  apiKey: process.env.CEREBRAS_API_KEY,
-});
+const ollamaEndpoint = "http://localhost:11434/api/generate";
 
 async function inference(options) {
   try {
     if (!options.model || !options.input) {
       throw new Error("Model and input are required");
     }
-    const inputStream = client.createInputStream();
-    const outputStream = client.createOutputStream();
-    const responseStream = await client.runModelAsStream({
-      model_name: options.model,
-      input_stream: inputStream,
-      output_stream: outputStream,
+    const response = await axios.post(ollamaEndpoint, {
+      model: options.model,
+      prompt: options.input,
+    }, {
+      responseType: 'stream',
     });
-    inputStream.write(options.input);
-    inputStream.end();
-    const response = await new Promise((resolve, reject) => {
-      const chunks = [];
-      responseStream.on("data", (chunk) => {
-        chunks.push(chunk);
-      });
-      responseStream.on("end", () => {
-        const response = Buffer.concat(chunks).toString();
-        resolve(response);
-      });
-      responseStream.on("error", (error) => {
-        reject(error);
-      });
+    const chunks = [];
+    response.data.on('data', (chunk) => {
+      chunks.push(chunk.toString());
     });
-    return response;
+    response.data.on('end', () => {
+      const responses = chunks.map((chunk) => JSON.parse(chunk));
+      const finalResponse = responses[responses.length - 1];
+      return finalResponse;
+    });
+    response.data.on('error', (error) => {
+      console.error(error);
+      throw error;
+    });
   } catch (error) {
     console.error(error);
     throw error;
@@ -43,29 +37,7 @@ async function vectorize(options) {
     if (!options.model || !options.input) {
       throw new Error("Model and input are required");
     }
-    const inputStream = client.createInputStream();
-    const outputStream = client.createOutputStream();
-    const responseStream = await client.runModelAsStream({
-      model_name: options.model,
-      input_stream: inputStream,
-      output_stream: outputStream,
-    });
-    inputStream.write(options.input);
-    inputStream.end();
-    const response = await new Promise((resolve, reject) => {
-      const chunks = [];
-      responseStream.on("data", (chunk) => {
-        chunks.push(chunk);
-      });
-      responseStream.on("end", () => {
-        const response = Buffer.concat(chunks).toString();
-        resolve(response);
-      });
-      responseStream.on("error", (error) => {
-        reject(error);
-      });
-    });
-    return response;
+    throw new Error("Vectorization is not supported by the Ollama API");
   } catch (error) {
     console.error(error);
     throw error;
@@ -77,9 +49,7 @@ async function transcribe(options) {
     if (!options.file) {
       throw new Error("File is required");
     }
-    // Note: The Cerebras Cloud SDK does not have a built-in transcription function.
-    // You may need to use a different library or service for transcription.
-    throw new Error("Transcription is not supported by the Cerebras Cloud SDK");
+    throw new Error("Transcription is not supported by the Ollama API");
   } catch (error) {
     console.error(error);
     throw error;
