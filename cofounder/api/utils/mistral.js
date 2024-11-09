@@ -27,8 +27,18 @@ async function transcribe(options) {
   return response.data;
 }
 
+async function stream(options) {
+  throw new Error('Streaming functionality is not implemented in the Mistral API');
+}
+
+async function toolCall(options) {
+  throw new Error('Tool calling functionality is not implemented in the Mistral API');
+}
+
 export default {
   inference,
   vectorize,
   transcribe,
+  stream,
+  toolCall,
 };
