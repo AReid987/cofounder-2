@@ -1,30 +1,29 @@
-import { GoogleGemini } from 'google-gemini';
+import { BetaClient } from '@google/generative-ai';
 
-const googleGemini = new GoogleGemini({
+const client = new BetaClient({
   apiKey: process.env.GOOGLE_GEMINI_API_KEY,
 });
 
 async function inference(options) {
-  const response = await googleGemini.inference({
+  const response = await client.generateText({
     model: options.model,
     input: options.input,
   });
-  return response.data;
+  return response;
 }
 
 async function vectorize(options) {
-  const response = await googleGemini.vectorize({
+  const response = await client.embedText({
     model: options.model,
     input: options.input,
   });
-  return response.data;
+  return response;
 }
 
 async function transcribe(options) {
-  const response = await googleGemini.transcribe({
-    file: options.file,
-  });
-  return response.data;
+  // Note: Transcription is not a direct method in the @google/generative-ai package
+  // You might need to use a different API or library for transcription
+  throw new Error('Transcription is not supported in this package');
 }
 
 export default {
