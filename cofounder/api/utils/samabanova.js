@@ -1,11 +1,11 @@
-import { Samabanova } from 'samabanova';
+import { SambaFlow } from 'sambaflow';
 
-const samabanova = new Samabanova({
+const client = new SambaFlow({
   apiKey: process.env.SAMABANOVA_API_KEY,
 });
 
 async function inference(options) {
-  const response = await samabanova.inference({
+  const response = await client.inference({
     model: options.model,
     input: options.input,
   });
@@ -13,7 +13,7 @@ async function inference(options) {
 }
 
 async function vectorize(options) {
-  const response = await samabanova.vectorize({
+  const response = await client.vectorize({
     model: options.model,
     input: options.input,
   });
@@ -21,7 +21,7 @@ async function vectorize(options) {
 }
 
 async function transcribe(options) {
-  const response = await samabanova.transcribe({
+  const response = await client.transcribe({
     file: options.file,
   });
   return response.data;
