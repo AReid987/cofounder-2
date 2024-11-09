@@ -12,20 +12,38 @@ async function inference(options) {
   return response;
 }
 
-async function vectorize(options) {
-  // Note: Embedding is not shown in the example from the docs
-  // You might need to check the official documentation for the correct method
-  throw new Error('Embedding is not supported in this package');
+async function stream(options) {
+  const streamResponse = await client.chat.completions.create({
+    model: options.model,
+    messages: [
+      { role: 'user', content: options.input },
+    ],
+    stream: true,
+  });
+
+  let output = '';
+  for await (const chunk of streamResponse) {
+    output += chunk.choices[0].delta.content;
+  }
+  return output;
 }
 
-async function transcribe(options) {
-  // Note: Transcription is not shown in the example from the docs
-  // You might need to use a different API or library for transcription
-  throw new Error('Transcription is not supported in this package');
+async function toolCall(options) {
+  const response = await client.chat.completions.create({
+    model: options.model,
+    messages: [
+      { role: 'user', content: options.input },
+    ],
+    tools: options.tools,
+    tool_choice: options.tool_choice || 'auto',
+  });
+  return response;
 }
 
 export default {
   inference,
+  stream,
+  toolCall,
   vectorize,
   transcribe,
 };
