@@ -1,27 +1,25 @@
-import { BetaClient } from '@google/generative-ai';
+import Together from 'together-ai';
 
-const client = new BetaClient({
-  apiKey: process.env.GOOGLE_GEMINI_API_KEY,
-});
+const together = new Together();
 
 async function inference(options) {
-  const response = await client.generateText({
+  const response = await together.chat.completions.create({
     model: options.model,
-    input: options.input,
+    messages: [
+      { role: 'user', content: options.input },
+    ],
   });
   return response;
 }
 
 async function vectorize(options) {
-  const response = await client.embedText({
-    model: options.model,
-    input: options.input,
-  });
-  return response;
+  // Note: Embedding is not shown in the example from the docs
+  // You might need to check the official documentation for the correct method
+  throw new Error('Embedding is not supported in this package');
 }
 
 async function transcribe(options) {
-  // Note: Transcription is not a direct method in the @google/generative-ai package
+  // Note: Transcription is not shown in the example from the docs
   // You might need to use a different API or library for transcription
   throw new Error('Transcription is not supported in this package');
 }
