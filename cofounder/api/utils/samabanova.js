@@ -27,8 +27,18 @@ async function transcribe(options) {
   return response.data;
 }
 
+async function toolCall(options) {
+  throw new Error('Tool calling functionality is not implemented in the SambaNova API');
+}
+
+async function stream(options) {
+  throw new Error('Streaming functionality is not implemented in the SambaNova API');
+}
+
 export default {
   inference,
   vectorize,
   transcribe,
+  toolCall,
+  stream,
 };
