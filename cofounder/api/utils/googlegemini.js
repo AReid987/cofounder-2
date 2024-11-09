@@ -1,9 +1,9 @@
-import Together from 'together-ai';
+import { GeminiClient } from '@google/generative-ai';
 
-const together = new Together();
+const client = new GeminiClient();
 
 async function inference(options) {
-  const response = await together.chat.completions.create({
+  const response = await client.completions({
     model: options.model,
     messages: [
       { role: 'user', content: options.input },
