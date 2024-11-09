@@ -10,26 +10,4 @@ async function inference(options) {
   return response.choices[0].message.content;
 }
 
-async function toolCall(options) {
-  throw new Error('Tool calling functionality is not implemented in the Mistral API');
-}
-
-async function stream(options) {
-  throw new Error('Streaming functionality is not implemented in the Mistral API');
-}
-
-async function vectorize(options) {
-  throw new Error('Vectorize functionality is not implemented in the Mistral API');
-}
-
-async function transcribe(options) {
-  throw new Error('Transcribe functionality is not implemented in the Mistral API');
-}
-
-export default {
-  inference,
-  toolCall,
-  stream,
-  vectorize,
-  transcribe,
-};
+// ... rest of the file remains the same ...
