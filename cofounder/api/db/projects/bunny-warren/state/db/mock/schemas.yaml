@@ -1,0 +1,200 @@
+_updated: 1731185636134
+_processing: false
+key: db.schemas
+data:
+  users:
+    - name: user_uid
+      type: String
+      unique: true
+      nullable: false
+      "atributes:inator:": null
+    - name: email
+      type: String
+      unique: true
+      nullable: false
+    - name: password_hash
+      type: String
+      nullable: false
+    - name: profile_picture
+      type: String
+      nullable: true
+    - name: biography
+      type: String
+      nullable: true
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false
+  friendships:
+    - name: id
+      type: String
+      unique: true
+      nullable: false
+      primary_key: true
+    - name: user_uid
+      type: String
+      nullable: false
+      foreign_key:
+        table: users
+        column: user_uid
+    - name: friend_uid
+      type: String
+      nullable: false
+      foreign_key:
+        table: users
+        column: user_uid
+    - name: status
+      type: String
+      nullable: false
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false
+  decks:
+    - name: id
+      type: String
+      unique: true
+      nullable: false
+      primary_key: true
+    - name: user_uid
+      type: String
+      nullable: false
+      foreign_key:
+        table: users
+        column: user_uid
+    - name: name
+      type: String
+      nullable: false
+    - name: cards
+      type: String
+      nullable: true
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false
+  cards:
+    - name: id
+      type: String
+      unique: true
+      nullable: false
+      primary_key: true
+    - name: name
+      type: String
+      nullable: false
+    - name: type
+      type: String
+      nullable: false
+    - name: color
+      type: String
+      nullable: true
+    - name: abilities
+      type: String
+      nullable: true
+    - name: image
+      type: String
+      nullable: true
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false
+  lobbies:
+    - name: id
+      type: String
+      unique: true
+      nullable: false
+      primary_key: true
+    - name: name
+      type: String
+      nullable: false
+    - name: description
+      type: String
+      nullable: true
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false
+  lobby_members:
+    - name: id
+      type: String
+      unique: true
+      nullable: false
+      primary_key: true
+    - name: lobby_id
+      type: String
+      nullable: false
+      foreign_key:
+        table: lobbies
+        column: id
+    - name: user_uid
+      type: String
+      nullable: false
+      foreign_key:
+        table: users
+        column: user_uid
+    - name: role
+      type: String
+      nullable: true
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false
+  matches:
+    - name: id
+      type: String
+      unique: true
+      nullable: false
+      primary_key: true
+    - name: lobby_id
+      type: String
+      nullable: false
+      foreign_key:
+        table: lobbies
+        column: id
+    - name: winner_uid
+      type: String
+      nullable: true
+      foreign_key:
+        table: users
+        column: user_uid
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false
+  leaderboard:
+    - name: id
+      type: String
+      unique: true
+      nullable: false
+      primary_key: true
+    - name: user_uid
+      type: String
+      nullable: false
+      foreign_key:
+        table: users
+        column: user_uid
+    - name: score
+      type: Number
+      nullable: false
+    - name: rank
+      type: Number
+      nullable: false
+    - name: created_at
+      type: Number
+      nullable: false
+    - name: updated
+      type: Number
+      nullable: false

@@ -1,63 +1,108 @@
-import axios from "axios";
+import { Cerebras } from "@cerebras/cerebras_cloud_sdk";
 
-const ollamaEndpoint = "http://localhost:11434/api/generate";
+const client = new Cerebras({
+	apiKey: process.env.CEREBRAS_API_KEY,
+});
 
 async function inference(options) {
-  try {
-    if (!options.model || !options.input) {
-      throw new Error("Model and input are required");
-    }
-    const response = await axios.post(ollamaEndpoint, {
-      model: options.model,
-      prompt: options.input,
-    }, {
-      responseType: 'stream',
-    });
-    const chunks = [];
-    response.data.on('data', (chunk) => {
-      chunks.push(chunk.toString());
-    });
-    response.data.on('end', () => {
-      const responses = chunks.map((chunk) => JSON.parse(chunk));
-      const finalResponse = responses[responses.length - 1];
-      return finalResponse;
-    });
-    response.data.on('error', (error) => {
-      console.error(error);
-      throw error;
-    });
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+	try {
+		const { model, messages } = options;
+
+		// Ensure all messages have valid roles
+		const validMessages = messages.map((msg) => ({
+			role: msg.role === "system" ? "user" : msg.role, // Convert 'system' to 'user' as Cerebras expects
+			content: msg.content,
+		}));
+
+		// Call Cerebras API
+		const response = await client.chat.completions.create({
+			messages: validMessages,
+			model: model || "llama3.1-70b",
+			temperature: options.temperature || 0.7,
+			max_tokens: options.max_tokens || 2048,
+		});
+
+		// Return formatted response
+		return {
+			text: response.choices[0].message.content,
+			usage: response.usage || {
+				prompt_tokens: 0,
+				completion_tokens: 0,
+				total_tokens: 0,
+			},
+		};
+	} catch (error) {
+		console.error("Cerebras inference error:", error);
+		console.error("Request details:", {
+			model: options.model,
+			messageCount: options.messages?.length,
+			firstMessageRole: options.messages?.[0]?.role,
+		});
+		throw error;
+	}
+}
+
+async function stream(options) {
+	try {
+		const { model, messages } = options;
+
+		const validMessages = messages.map((msg) => ({
+			role: msg.role === "system" ? "user" : msg.role,
+			content: msg.content,
+		}));
+
+		const response = await client.chat.completions.create({
+			messages: validMessages,
+			model: model || "llama3.1-70b",
+			temperature: options.temperature || 0.7,
+			max_tokens: options.max_tokens || 2048,
+			stream: true,
+		});
+
+		let output = "";
+		for await (const chunk of response) {
+			const chunkText = chunk.choices[0]?.delta?.content || "";
+			output += chunkText;
+
+			if (options.stream?.write) {
+				await options.stream.write(chunkText);
+			}
+		}
+
+		return {
+			text: output,
+			usage: {
+				prompt_tokens: 0,
+				completion_tokens: 0,
+				total_tokens: 0,
+			},
+		};
+	} catch (error) {
+		console.error("Cerebras stream error:", error);
+		throw error;
+	}
+}
+
+async function toolCall(options) {
+	throw new Error("Function calling is not implemented for Cerebras models");
 }
 
 async function vectorize(options) {
-  try {
-    if (!options.model || !options.input) {
-      throw new Error("Model and input are required");
-    }
-    throw new Error("Vectorization is not supported by the Ollama API");
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+	throw new Error(
+		"Vectorize functionality is not implemented for Cerebras models",
+	);
 }
 
 async function transcribe(options) {
-  try {
-    if (!options.file) {
-      throw new Error("File is required");
-    }
-    throw new Error("Transcription is not supported by the Ollama API");
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+	throw new Error(
+		"Transcribe functionality is not implemented for Cerebras models",
+	);
 }
 
 export default {
-  inference,
-  vectorize,
-  transcribe,
+	inference,
+	stream,
+	toolCall,
+	vectorize,
+	transcribe,
 };

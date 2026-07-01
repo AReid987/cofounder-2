@@ -1,0 +1,193 @@
+_updated: 1731185616427
+_processing: false
+key: uxsitemap.structure
+data:
+  views:
+    unique:
+      UV_HOME:
+        title: Home
+        extendedDescription: The Home page is the landing page of the app, providing an
+          overview of the game and its features. It includes a hero section with
+          a call-to-action to start playing, a section highlighting the game's
+          features, and a section showcasing the latest news and updates.
+        notes: The Home page should be visually appealing and provide a clear
+          understanding of the game and its benefits.
+        role: The Home page serves as the entry point for new users and provides a quick
+          overview of the game's features and benefits.
+      UV_PLAY:
+        title: Play
+        extendedDescription: The Play page is where users can find games to play, create
+          lobbies, and join friends' games. It includes a game browser, a lobby
+          creation tool, and a friend's game list.
+        notes: The Play page should be easy to navigate and provide users with a
+          seamless experience when finding and joining games.
+        role: The Play page is the central hub for users to engage with the game and
+          play with others.
+      UV_SOCIAL:
+        title: Social
+        extendedDescription: The Social page is where users can manage their profiles,
+          add friends, and chat with other players. It includes a profile
+          management tool, a friend's list, and a chat interface.
+        notes: The Social page should be user-friendly and provide users with a
+          comfortable experience when interacting with others.
+        role: The Social page serves as the social hub for users to connect with others
+          and build relationships.
+      UV_DECKBUILDER:
+        title: Deck Builder
+        extendedDescription: The Deck Builder page is where users can create and manage
+          their decks of cards. It includes a deck creation tool, a card
+          library, and a deck management interface.
+        notes: The Deck Builder page should be intuitive and provide users with a
+          seamless experience when creating and managing their decks.
+        role: The Deck Builder page is a critical component of the game, allowing users
+          to create and customize their decks.
+      UV_LEADERBOARD:
+        title: Leaderboard
+        extendedDescription: The Leaderboard page is where users can view the
+          leaderboard and track their progress. It includes a leaderboard table,
+          a ranking system, and a progress tracker.
+        notes: The Leaderboard page should be easy to understand and provide users with
+          a clear view of their progress and ranking.
+        role: The Leaderboard page serves as a motivational tool, encouraging users to
+          improve their skills and climb the ranks.
+      UV_SHOP:
+        title: Shop
+        extendedDescription: The Shop page is where users can purchase physical card
+          games. It includes a product catalog, a shopping cart, and a checkout
+          interface.
+        notes: The Shop page should be user-friendly and provide users with a seamless
+          experience when purchasing physical card games.
+        role: The Shop page serves as a revenue stream for the game, allowing users to
+          purchase physical card games.
+      UV_GAME:
+        title: Game
+        extendedDescription: The Game page is where users can play the game, interact
+          with other players, and experience the game's features. It includes a
+          game interface, a chat interface, and a game management tool.
+        notes: The Game page should be engaging and provide users with a fun and
+          interactive experience.
+        role: The Game page is the core component of the game, allowing users to play
+          and interact with others.
+      UV_AUTH:
+        title: Authentication
+        extendedDescription: The Authentication page is where users can log in, sign up,
+          and manage their account. It includes a login form, a registration
+          form, and an account management interface.
+        notes: The Authentication page should be secure and provide users with a
+          seamless experience when managing their account.
+        role: The Authentication page serves as the entry point for users to access the
+          game and its features.
+      UV_TERMS:
+        title: Terms and Conditions
+        extendedDescription: The Terms and Conditions page is where users can view the
+          game's terms and conditions, including the game's rules, policies, and
+          guidelines. It includes a terms and conditions document and a FAQ
+          section.
+        notes: The Terms and Conditions page should be clear and provide users with a
+          thorough understanding of the game's rules and policies.
+        role: The Terms and Conditions page serves as a resource for users to understand
+          the game's rules and policies.
+      UV_PRIVACY:
+        title: Privacy Policy
+        extendedDescription: The Privacy Policy page is where users can view the game's
+          privacy policy, including the game's data collection and usage
+          practices. It includes a privacy policy document and a FAQ section.
+        notes: The Privacy Policy page should be clear and provide users with a thorough
+          understanding of the game's data collection and usage practices.
+        role: The Privacy Policy page serves as a resource for users to understand the
+          game's data collection and usage practices.
+    shared:
+      GV_NAVIGATION:
+        title: Navigation
+        extendedDescription: The Navigation bar is a global component that provides
+          users with easy access to the game's features and pages. It includes a
+          navigation menu and a search bar.
+        notes: The Navigation bar should be visible on all pages and provide users with
+          a seamless experience when navigating the game.
+        role: The Navigation bar serves as the primary navigation tool for users to
+          access the game's features and pages.
+        sharedByViews:
+          - UV_HOME
+          - UV_PLAY
+          - UV_SOCIAL
+          - UV_DECKBUILDER
+          - UV_LEADERBOARD
+          - UV_SHOP
+          - UV_GAME
+          - UV_AUTH
+          - UV_TERMS
+          - UV_PRIVACY
+        relativePosition: Top
+      GV_FOOTER:
+        title: Footer
+        extendedDescription: The Footer is a global component that provides users with
+          additional information and resources, including the game's terms and
+          conditions, privacy policy, and social media links. It includes a
+          footer menu and a social media section.
+        notes: The Footer should be visible on all pages and provide users with a clear
+          understanding of the game's terms and conditions, privacy policy, and
+          social media links.
+        role: The Footer serves as a resource for users to understand the game's terms
+          and conditions, privacy policy, and social media links.
+        sharedByViews:
+          - UV_HOME
+          - UV_PLAY
+          - UV_SOCIAL
+          - UV_DECKBUILDER
+          - UV_LEADERBOARD
+          - UV_SHOP
+          - UV_GAME
+          - UV_AUTH
+          - UV_TERMS
+          - UV_PRIVACY
+        relativePosition: Bottom
+  crosslinks:
+    - source: UV_HOME
+      target: UV_PLAY
+      intent: Start playing the game
+      action: Users can click on the 'Play' button on the Home page to start playing
+        the game.
+    - source: UV_PLAY
+      target: UV_SOCIAL
+      intent: Manage social interactions
+      action: Users can click on the 'Social' button on the Play page to manage their
+        social interactions.
+    - source: UV_SOCIAL
+      target: UV_DECKBUILDER
+      intent: Create and manage decks
+      action: Users can click on the 'Deck Builder' button on the Social page to
+        create and manage their decks.
+    - source: UV_DECKBUILDER
+      target: UV_LEADERBOARD
+      intent: View leaderboard and track progress
+      action: Users can click on the 'Leaderboard' button on the Deck Builder page to
+        view the leaderboard and track their progress.
+    - source: UV_LEADERBOARD
+      target: UV_SHOP
+      intent: Purchase physical card games
+      action: Users can click on the 'Shop' button on the Leaderboard page to purchase
+        physical card games.
+    - source: UV_SHOP
+      target: UV_GAME
+      intent: Play the game
+      action: Users can click on the 'Play' button on the Shop page to play the game.
+    - source: UV_GAME
+      target: UV_AUTH
+      intent: Log in or sign up
+      action: Users can click on the 'Log in' or 'Sign up' button on the Game page to
+        log in or sign up for an account.
+    - source: UV_AUTH
+      target: UV_TERMS
+      intent: View terms and conditions
+      action: Users can click on the 'Terms and Conditions' button on the
+        Authentication page to view the game's terms and conditions.
+    - source: UV_TERMS
+      target: UV_PRIVACY
+      intent: View privacy policy
+      action: Users can click on the 'Privacy Policy' button on the Terms and
+        Conditions page to view the game's privacy policy.
+    - source: UV_PRIVACY
+      target: UV_HOME
+      intent: Return to Home page
+      action: Users can click on the 'Home' button on the Privacy Policy page to
+        return to the Home page.

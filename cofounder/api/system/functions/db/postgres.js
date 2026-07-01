@@ -2,13 +2,29 @@ import utils from "@/utils/index.js";
 import yaml from "yaml";
 
 async function dbPostgresGenerate({ context, data }) {
-  const { model } = data;
-  const languageModel = model ? model : "chatgpt-4o-latest"; // default to chatgpt-4o-latest if no model is provided
+	// Validate input data
+	if (!data.pm?.drd) {
+		throw new Error("Database Requirements Document (DRD) is required");
+	}
+	if (!data.db?.schemas) {
+		throw new Error("Database schemas are required");
+	}
 
-  const messages = [
-    {
-      "role": "system",
-      "content": `- you are a genius Postgresql expert
+	const { pm, db } = data;
+	const { drd } = pm;
+	const { model } = data;
+
+	// Debug logging
+	console.log("DB Postgres Generate Input:", {
+		hasDRD: !!drd,
+		hasSchemas: !!db.schemas,
+		model,
+	});
+
+	const messages = [
+		{
+			role: "system",
+			content: `- you are a genius Postgresql expert
 
 - your role is to write the POSTGRESQL commands that create the DB tables and seed the DB with a good amount of example seed entries, according to the provided details
 - your answer should be in this format :
@@ -44,23 +60,23 @@ very important :
 your reply should start with : "\`\`\`postgresql" and end with "\`\`\`
 
 you will be tipped $99999 + major company shares for nailing it perfectly off the bat
-you are a genius`
-    },
-    {
-      "role": "user",
-      "content": `\`\`\`DRD:database-requirements-document
+you are a genius`,
+		},
+		{
+			role: "user",
+			content: `\`\`\`DRD:database-requirements-document
 ${drd}
-\`\`\``
-    },
-    {
-      "role": "user",
-      "content": `\`\`\`DB:schemas
+\`\`\``,
+		},
+		{
+			role: "user",
+			content: `\`\`\`DB:schemas
 ${yaml.stringify({ schemas: db.schemas })}
-\`\`\``
-    },
-    {
-      "role": "user",
-      "content": `Generate the POSTGRES command in one single comprehensive answer
+\`\`\``,
+		},
+		{
+			role: "user",
+			content: `Generate the POSTGRES command in one single comprehensive answer
 it is expected to be very comprehensive and detailed and cover all the provided details
 
 ---
@@ -75,37 +91,57 @@ very important :
 > only use basic primitives like numbers, strings, json, etc ... no uuid types or special types etc
 > very important : only use basic primitives like numbers, strings, json, etc ... no uuid types or any special types etc ! very basic primitives only !
 
-reply in \`\`\`postgresql\`\`\` 
+reply in \`\`\`postgresql\`\`\`
 
-you're a genius`
-    },
-  ];
+you're a genius`,
+		},
+	];
 
-  const postgres = (
-    await context.run({
-      id: "op:LLM::GEN",
-      context: {
-        ...context, // {streams , project}
-        operation: {
-          key: "db.postgres",
-          meta: {
-            name: "DB Postgresql",
-            desc: "db postgres commands {tables,seed}",
-          },
-        },
-      },
-      data: {
-        model: languageModel, // Use the selected language model
-        messages,
-        preparser: `backticks`,
-        parser: false,
-      }
-    })
-  ).generated
+	try {
+		const postgres = await context.run({
+			id: "op:LLM::GEN",
+			context: {
+				...context, // {streams , project}
+				operation: {
+					key: "db.postgres",
+					meta: {
+						name: "DB Postgresql",
+						desc: "db postgres commands {tables,seed}",
+					},
+				},
+			},
+			data: {
+				provider: "cerebras",
+				model: "llama3.1-70b", // Use the selected language model
+				messages,
+				preparser: `backticks`,
+				parser: false,
+			},
+		});
+		if (!postgres?.generated) {
+			throw new Error("Failed to generate PostgreSQL commands");
+		}
 
-  // ...
+		return {
+			postgres: response.generated,
+			metadata: {
+				timestamp: Date.now(),
+				model: "llama3.1-70b",
+			},
+		};
+	} catch (error) {
+		console.error("PostgreSQL Generation Error:", {
+			error: error.message,
+			stack: error.stack,
+			context: {
+				hasDRD: !!drd,
+				hasSchemas: !!db?.schemas,
+			},
+		});
+		throw error;
+	}
 }
 
 export default {
-  "DB:POSTGRES::GENERATE": dbPostgresGenerate,
-}
+	"DB:POSTGRES::GENERATE": dbPostgresGenerate,
+};

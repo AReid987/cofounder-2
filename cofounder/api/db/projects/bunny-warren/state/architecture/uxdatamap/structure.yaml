@@ -1,0 +1,87 @@
+_updated: 1731187843148
+_processing: false
+key: uxdatamap.structure
+data:
+  root:
+    globalState:
+      authToken:
+        schema: string
+        default: null
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaGFuIjoiMjMwfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      userId:
+        schema: string
+        default: null
+        example: "1234567890"
+      lobbyId:
+        schema: string
+        default: null
+        example: lobby-123
+      gameState:
+        schema: object
+        default: {}
+        example:
+          gameName: Bunny Warren
+          gameMode: casual
+      friendList:
+        schema: array
+        default: []
+        example:
+          - userId: "1234567890"
+            username: John Doe
+      deckId:
+        schema: string
+        default: null
+        example: deck-123
+      cardList:
+        schema: array
+        default: []
+        example:
+          - cardId: card-123
+            cardName: Bunny Card
+      leaderboardData:
+        schema: object
+        default: {}
+        example:
+          ranking: 1
+          score: 1000
+  routes:
+    - description: Home page
+      path: /
+      view: Home
+    - description: Play section
+      path: /play
+      view: Play
+    - description: Play section with lobby ID
+      path: /play/:lobbyId
+      view: Play
+      slugs:
+        - name: lobbyId
+          intent: The ID of the lobby
+      urlParams:
+        - name: lobbyId
+          intent: The ID of the lobby
+          example: lobby-123
+          required: true
+    - description: Social section
+      path: /social
+      view: Social
+    - description: Social section with user ID
+      path: /social/:userId
+      view: Social
+      slugs:
+        - name: userId
+          intent: The ID of the user
+      urlParams:
+        - name: userId
+          intent: The ID of the user
+          example: "1234567890"
+          required: true
+    - description: Deck builder section
+      path: /deck-builder
+      view: Deck Builder
+    - description: Leaderboard section
+      path: /leaderboard
+      view: Leaderboard
+    - description: Shop section
+      path: /shop
+      view: Shop

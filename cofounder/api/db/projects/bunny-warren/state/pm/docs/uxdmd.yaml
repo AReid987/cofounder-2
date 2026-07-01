@@ -1,0 +1,214 @@
+_updated: 1731187840016
+_processing: false
+key: pm.uxdmd
+data: >-
+  # Frontend App Architecture Analysis Document
+
+
+  ## Table of Contents
+
+
+  1. [Overview](#overview)
+
+  2. [App Structure](#app-structure)
+
+  3. [Route Configuration](#route-configuration)
+
+  4. [View Configuration](#view-configuration)
+
+  5. [State Management](#state-management)
+
+  6. [Global App State](#global-app-state)
+
+  7. [API Endpoints](#api-endpoints)
+
+  8. [Component Relationships](#component-relationships)
+
+  9. [Data Flow](#data-flow)
+
+
+  ## Overview
+
+
+  The Bunny Warren web app is a real-time player vs player card game built using
+  Next.js, Tailwind, and Framer Motion. This document provides an in-depth
+  analysis of the frontend app architecture, including the app structure, route
+  configuration, view configuration, state management, global app state, API
+  endpoints, component relationships, and data flow.
+
+
+  ## App Structure
+
+
+  The app structure consists of the following components:
+
+
+  * `Home`: The landing page of the app, which provides an overview of the game
+  and its features.
+
+  * `Play`: The section where users can find games to play, create lobbies, and
+  join friends' games.
+
+  * `Social`: The section where users can manage their profiles, add friends,
+  and chat with other players.
+
+  * `Deck Builder`: The section where users can create and manage their decks of
+  cards.
+
+  * `Leaderboard`: The section where users can view the leaderboard and track
+  their progress.
+
+  * `Shop`: The section where users can purchase physical card games.
+
+
+  ## Route Configuration
+
+
+  The route configuration is as follows:
+
+
+  | Route | View | Slug | URL Parameters | Auth Restrictions |
+
+  | --- | --- | --- | --- | --- |
+
+  | `/` | `Home` | - | - | - |
+
+  | `/play` | `Play` | - | - | - |
+
+  | `/play/:lobbyId` | `Play` | `lobbyId` | `lobbyId` | - |
+
+  | `/social` | `Social` | - | - | - |
+
+  | `/social/:userId` | `Social` | `userId` | `userId` | - |
+
+  | `/deck-builder` | `Deck Builder` | - | - | - |
+
+  | `/leaderboard` | `Leaderboard` | - | - | - |
+
+  | `/shop` | `Shop` | - | - | - |
+
+
+  ## View Configuration
+
+
+  The view configuration is as follows:
+
+
+  | View | Stateful Variables | Actions/Dynamic Functions | Slug | URL
+  Parameters |
+
+  | --- | --- | --- | --- | --- |
+
+  | `Home` | - | - | - | - |
+
+  | `Play` | `lobbyId`, `gameState` | `joinLobby`, `leaveLobby` | `lobbyId` |
+  `lobbyId` |
+
+  | `Social` | `userId`, `friendList` | `addFriend`, `removeFriend` | `userId` |
+  `userId` |
+
+  | `Deck Builder` | `deckId`, `cardList` | `addCard`, `removeCard` | - | - |
+
+  | `Leaderboard` | `leaderboardData` | - | - | - |
+
+  | `Shop` | - | - | - | - |
+
+
+  ## State Management
+
+
+  The state management is handled using a combination of local state and global
+  state. The local state is managed using the `useState` hook, while the global
+  state is managed using a state management library.
+
+
+  ## Global App State
+
+
+  The global app state consists of the following variables:
+
+
+  * `authToken`: The authentication token for the current user.
+
+  * `userId`: The ID of the current user.
+
+  * `lobbyId`: The ID of the current lobby.
+
+  * `gameState`: The state of the current game.
+
+  * `friendList`: The list of friends for the current user.
+
+  * `deckId`: The ID of the current deck.
+
+  * `cardList`: The list of cards in the current deck.
+
+  * `leaderboardData`: The data for the leaderboard.
+
+
+  ## API Endpoints
+
+
+  The API endpoints are as follows:
+
+
+  | Endpoint | Method | Request Body | Response Body |
+
+  | --- | --- | --- | --- |
+
+  | `/users` | `POST` | `username`, `password` | `userId`, `authToken` |
+
+  | `/lobbies` | `POST` | `lobbyName` | `lobbyId` |
+
+  | `/lobbies/:lobbyId` | `GET` | - | `lobbyData` |
+
+  | `/games` | `POST` | `gameName` | `gameId` |
+
+  | `/games/:gameId` | `GET` | - | `gameData` |
+
+  | `/friends` | `GET` | - | `friendList` |
+
+  | `/friends/:userId` | `POST` | - | - |
+
+  | `/deck-builder` | `POST` | `deckName` | `deckId` |
+
+  | `/deck-builder/:deckId` | `GET` | - | `deckData` |
+
+  | `/leaderboard` | `GET` | - | `leaderboardData` |
+
+
+  ## Component Relationships
+
+
+  The component relationships are as follows:
+
+
+  * `Home` -> `Play`
+
+  * `Play` -> `Social`
+
+  * `Social` -> `Deck Builder`
+
+  * `Deck Builder` -> `Leaderboard`
+
+  * `Leaderboard` -> `Shop`
+
+
+  ## Data Flow
+
+
+  The data flow is as follows:
+
+
+  * The user logs in and receives an authentication token.
+
+  * The user creates a lobby and receives a lobby ID.
+
+  * The user joins a game and receives a game ID.
+
+  * The user adds friends and receives a friend list.
+
+  * The user creates a deck and receives a deck ID.
+
+  * The user views the leaderboard and receives leaderboard data.
+
+  * The user purchases physical card games from the shop.

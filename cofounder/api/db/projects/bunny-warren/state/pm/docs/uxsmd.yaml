@@ -1,0 +1,208 @@
+_updated: 1731158827579
+_processing: false
+key: pm.uxsmd
+data: >-
+  ## UX Sitemap Document for Bunny Warren Web App
+
+
+  ### Overview
+
+
+  The UX Sitemap for the Bunny Warren web app outlines the information
+  architecture and user flow of the application. It provides a visual
+  representation of the app's pages, their relationships, and the navigation
+  paths that users can take to complete their goals.
+
+
+  ### User Personas
+
+
+  The Bunny Warren web app is designed for three primary user personas:
+
+
+  * **Casual Player**: A user who plays the game for fun and relaxation.
+
+  * **Competitive Player**: A user who plays the game to compete with others and
+  climb the leaderboards.
+
+  * **Social Player**: A user who plays the game to interact with friends and
+  make new connections.
+
+
+  ### Information Architecture
+
+
+  The UX Sitemap is organized into the following sections:
+
+
+  * **Home**: The landing page of the app, which provides an overview of the
+  game and its features.
+
+  * **Play**: The section where users can find games to play, create lobbies,
+  and join friends' games.
+
+  * **Social**: The section where users can manage their profiles, add friends,
+  and chat with other players.
+
+  * **Deck Builder**: The section where users can create and manage their decks
+  of cards.
+
+  * **Leaderboard**: The section where users can view the leaderboard and track
+  their progress.
+
+  * **Shop**: The section where users can purchase physical card games.
+
+
+  ### User Flow
+
+
+  The following diagram illustrates the typical user flow for the Bunny Warren
+  web app:
+
+
+  ```
+
+  [User] -> [Home Page] -> [Play Section] -> [Create Lobby] -> [Invite Friends]
+  -> [Start Game] -> [Game Page] -> [End Game] -> [Leaderboard]
+
+  ```
+
+
+  ### Key Pages
+
+
+  #### Home Page
+
+
+  The Home Page is the landing page of the app. It provides an overview of the
+  game and its features, as well as links to the other sections of the app.
+
+
+  #### Play Section
+
+
+  The Play Section is where users can find games to play, create lobbies, and
+  join friends' games. Users can filter games by type (casual or competitive),
+  number of players, and game mode.
+
+
+  #### Social Section
+
+
+  The Social Section is where users can manage their profiles, add friends, and
+  chat with other players. Users can also view their friends' profiles and see
+  what games they are playing.
+
+
+  #### Deck Builder Section
+
+
+  The Deck Builder Section is where users can create and manage their decks of
+  cards. Users can add and remove cards from their decks, as well as change the
+  order of the cards.
+
+
+  #### Leaderboard Section
+
+
+  The Leaderboard Section is where users can view the leaderboard and track
+  their progress. Users can see their own ranking, as well as the rankings of
+  other players.
+
+
+  #### Shop Section
+
+
+  The Shop Section is where users can purchase physical card games. Users can
+  browse the available games and add them to their shopping cart.
+
+
+  ### Navigation
+
+
+  The Bunny Warren web app uses a top navigation bar to provide users with easy
+  access to the different sections of the app. The navigation bar is persistent
+  on all pages of the app.
+
+
+  ### Content Strategy
+
+
+  The content strategy for the Bunny Warren web app is focused on providing
+  users with clear and concise information about the game and its features. The
+  app also provides helpful tips and tutorials to help users learn how to play
+  the game.
+
+
+  ### Information Architecture Analysis
+
+
+  The information architecture of the Bunny Warren web app is well-organized and
+  easy to navigate. The app's pages are logically grouped into sections, and the
+  navigation bar provides users with quick access to the different sections of
+  the app.
+
+
+  ### User Flow Analysis
+
+
+  The user flow for the Bunny Warren web app is straightforward and easy to
+  follow. Users can easily find games to play, create lobbies, and join friends'
+  games. The app also provides clear instructions on how to play the game.
+
+
+  ### Key Pages Analysis
+
+
+  The key pages of the Bunny Warren web app are well-designed and provide users
+  with the information they need. The Home Page provides a clear overview of the
+  game and its features, the Play Section makes it easy to find games to play,
+  the Social Section allows users to connect with friends and other players, the
+  Deck Builder Section allows users to create and manage their decks of cards,
+  the Leaderboard Section allows users to track their progress, and the Shop
+  Section allows users to purchase physical card games.
+
+
+  ### Navigation Analysis
+
+
+  The navigation of the Bunny Warren web app is clear and concise. The top
+  navigation bar provides users with quick access to the different sections of
+  the app. The navigation bar is persistent on all pages of the app, so users
+  can always easily find their way back to the section they need.
+
+
+  ### Content Strategy Analysis
+
+
+  The content strategy for the Bunny Warren web app is effective in providing
+  users with clear and concise information about the game and its features. The
+  app also provides helpful tips and tutorials to help users learn how to play
+  the game.
+
+
+  ### Recommendations
+
+
+  The following are some recommendations for improving the UX Sitemap for the
+  Bunny Warren web app:
+
+
+  * **Add a search bar to the Home Page.** This would allow users to quickly
+  find the information they are looking for.
+
+  * **Add a "Recently Played" section to the Play Section.** This would allow
+  users to quickly resume games that they have recently played.
+
+  * **Add a "Friends" section to the Social Section.** This would allow users to
+  see a list of their friends and quickly send them messages.
+
+  * **Add a "Deck Manager" section to the Deck Builder Section.** This would
+  allow users to create and manage multiple decks of cards.
+
+  * **Add a "Help" section to the app.** This would provide users with access to
+  frequently asked questions, tutorials, and other helpful resources.
+
+
+  By implementing these recommendations, the UX Sitemap for the Bunny Warren web
+  app can be further improved to provide users with a better experience.

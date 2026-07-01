@@ -1,0 +1,253 @@
+_updated: 1731158340666
+_processing: false
+key: pm.frd
+data: >-
+  ## Features Requirements Document (FRD) for Bunny Warren Web App
+
+
+  ### Overview
+
+
+  This Features Requirements Document (FRD) outlines the functional requirements
+  for the Bunny Warren web app, a real-time player vs player card game. The
+  purpose of this document is to provide a detailed specification of the
+  features that the app must provide.
+
+
+  ### User Stories
+
+
+  The following user stories capture the essential features of the Bunny Warren
+  web app:
+
+
+  1. As a user, I want to create an account and log in to the app so that I can
+  play games and access my profile.
+
+  2. As a user, I want to manage my profile, including uploading a profile
+  picture and editing my bio, so that I can express myself and connect with
+  others.
+
+  3. As a user, I want to search for and add friends so that I can play games
+  with them and interact with their profiles.
+
+  4. As a user, I want to create and manage my deck of cards so that I can play
+  games with my preferred cards.
+
+  5. As a user, I want to play games with friends or strangers in real-time so
+  that I can compete and have fun.
+
+  6. As a user, I want to view the leaderboard and track my progress so that I
+  can compete with others and improve my skills.
+
+  7. As a user, I want to purchase physical card games so that I can play with
+  friends and family offline.
+
+
+  ### Features
+
+
+  #### Authentication
+
+
+  * User account creation and management
+
+  * Password recovery and reset
+
+  * Session management (login, logout)
+
+  * API endpoint: `POST /users`
+
+
+  #### Social Features
+
+
+  * Follow and friend request system
+
+  * Friend list management
+
+  * In-game chat or messaging system
+
+  * API endpoints: `GET /friends`, `POST /friend-request`
+
+
+  #### Gameplay
+
+
+  * Real-time player vs player matchmaking
+
+  * Lobby system (join, create, manage)
+
+  * Matchmaking with strangers
+
+  * Option to spectate games or watch replays of previous games
+
+  * API endpoints: `GET /lobbies`, `POST /join-lobby`, `POST /create-lobby`
+
+
+  #### Card Management
+
+
+  * Upload and manage custom card images
+
+  * Deck building and management
+
+  * API endpoints: `POST /cards`, `GET /deck`
+
+
+  #### Leaderboard
+
+
+  * Real-time leaderboard with player stats
+
+  * API endpoint: `GET /leaderboard`
+
+
+  #### Miscellaneous
+
+
+  * Link to purchase physical card game
+
+  * System for reporting and penalizing toxic or abusive players
+
+  * Integration with social media platforms for sharing game progress and
+  achievements
+
+  * Option to create and manage custom game modes or variations
+
+  * System for tracking and rewarding player achievements and milestones
+
+
+  #### AI Agent Integration (V2)
+
+
+  * AI Agent Players
+  	+ Integration of AI-powered agents as players
+  	+ AI agent difficulty levels (easy, medium, hard)
+
+  #### Voice-Enabled Agents (V3)
+
+
+  * Voice-Enabled AI Agents
+  	+ Integration of voice-enabled AI agents
+  	+ Voice commands for gameplay and interactions
+
+  #### 3D Avatar Agents (V4)
+
+
+  * 3D Avatar Agents
+  	+ Integration of 3D avatar agents
+  	+ Customizable 3D avatar appearances
+
+  ### Technical Requirements
+
+
+  * Monorepo
+  	+ Turborepo for monorepo management
+  	+ PNPM for package management
+  * Backend
+  	+ Python as backend language
+  	+ FastAPI for API development
+  * Frontend
+  	+ Next.js for frontend development
+  	+ Tailwind for styling
+  	+ Framer Motion for animations
+  * Database
+  	+ uv by Astra:sh for database management
+  * Real-Time Communication
+  	+ WebSocket for real-time communication
+
+  ### API Documentation
+
+
+  * API documentation will be generated using OpenAPI (Swagger)
+
+
+  ### Component Structure
+
+
+  * Components will be organized using a modular approach
+
+  * Each feature will have its own module with separate components and API
+  endpoints
+
+
+  ### Deployment
+
+
+  * Deployment will be handled using PNPM and Turborepo scripts
+
+  * Environment variables will be managed using a .env file
+
+
+  ### Security
+
+
+  * Authentication and authorization will be handled using JWT and cookies
+
+  * API endpoints will be secured using rate limiting and IP blocking
+
+
+  ### Roadmap
+
+
+  * Implementation of V1 in 5 working days
+
+  * Implementation of V2, V3, and V4 in parallel, in the remaining 4 working
+  days
+
+
+  ### Game Rules
+
+
+  1. Setup
+  	* Shuffle cards and place the deck face-down at the center of players.
+  	* Start a discard pile beside the deck.
+  	* Decide who goes first!
+  2. Gameplay
+  	* Take turns drawing cards from the shuffled deck.
+  	* Discard any black & white cards.
+  	* Collect all action cards (bunny cards and special cards)
+  3. Special Cards
+  	* Bunny Bond: Protects a group of 2 or more same-color bunnies from Carrot and Fox cards.
+  	* Carrot: Use to steal a color-group of bunnies from an opponent or save for another turn.
+  	* Fox: Use to make an opponent discard their unprotected bunnies. This card must be played immediately.
+  4. Objective
+  	* Gather 4 bunnies of the same color to form a Warren.
+  	* The first player to build a Bunny Warren wins.
+  5. Additional Note
+  	* A Bunny Warren is all of one color of Bunny.
+  	* There are only 4 colors of bunnies, red orange green purple
+
+  ### Additional Analysis
+
+
+  This FRD provides a comprehensive overview of the features and requirements
+  for the Bunny Warren web app. The following are some additional considerations
+  that may be relevant:
+
+
+  * **Prioritization**: The user stories and features should be prioritized
+  based on their importance and impact on the user experience.
+
+  * **User Interface (UI)**: The UI of the app should be user-friendly,
+  intuitive, and visually appealing.
+
+  * **Performance**: The app should be performant and responsive, even under
+  heavy load.
+
+  * **Scalability**: The app should be scalable to handle a large number of
+  users and games.
+
+  * **Accessibility**: The app should be accessible to users with disabilities.
+
+  * **Localization**: The app should support multiple languages.
+
+  * **Monetization**: The app should have a clear monetization strategy.
+
+  * **Marketing and Promotion**: The app should have a marketing and promotion
+  plan to reach its target audience.
+
+
+  By addressing these additional considerations, the Bunny Warren web app can be
+  a successful and engaging experience for users.
